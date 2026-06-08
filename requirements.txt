@@ -1,9 +1,9 @@
-echo fastapi==0.115.0 > requirements.txt
-echo uvicorn==0.30.0 >> requirements.txt
-echo httpx==0.28.1 >> requirements.txt
-echo pandas==2.3.3 >> requirements.txt
-echo numpy==2.2.6 >> requirements.txt
-echo scikit-learn==1.6.1 >> requirements.txt
-echo joblib==1.4.2 >> requirements.txt
-echo python-dateutil==2.9.0.post0 >> requirements.txt
-echo pydantic==2.13.2 >> requirements.txt
+fastapi==0.115.0
+uvicorn==0.30.0
+httpx==0.28.1
+pandas==2.3.3
+numpy==2.2.6
+scikit-learn==1.6.1
+joblib==1.4.2
+python-dateutil==2.9.0.post0
+pydantic==2.13.2
