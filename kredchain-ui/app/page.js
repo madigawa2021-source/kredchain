@@ -17,7 +17,7 @@ export default function Home() {
       setResult(null);
 
       const response = await fetch(
-        `http://127.0.0.1:8000/analyze/${address}`
+        `https://kredchain-api.onrender.com/analyze/${address}`
       );
 
       const data = await response.json();
