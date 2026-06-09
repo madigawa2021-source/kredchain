@@ -322,6 +322,10 @@ export default function Home() {
               <div>Address: {result.address.slice(0, 12)}...{result.address.slice(-8)}</div>
               <div>Time: {result.metadata.analyzed_at}</div>
               <div>Source: {result.metadata.data_source}</div>
+              <div>Training samples: {result.metadata.training_samples}</div>
+              {result.metadata.retrain_triggered && (
+                <div className="text-green-400 mt-1">✓ AI model retrained with new data</div>
+              )}
             </div>
 
           </div>

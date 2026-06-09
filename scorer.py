@@ -15,13 +15,13 @@ def load_model():
 
 
 def get_tier(score):
-    if score >= 85:
+    if score >= 59:
         return "TRUSTED MERCHANT"
-    if score >= 70:
-        return "RELIABLE"
     if score >= 50:
+        return "RELIABLE"
+    if score >= 42:
         return "DEVELOPING"
-    if score >= 30:
+    if score >= 35:
         return "LIMITED HISTORY"
     return "INSUFFICIENT DATA"
 
