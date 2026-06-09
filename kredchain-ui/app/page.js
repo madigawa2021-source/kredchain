@@ -249,20 +249,34 @@ export default function Home() {
               </button>
             </div>
 
-            {/* AI ANOMALY */}
-            {result.ai && (
-              <div className="mt-8 text-center">
-                <div className="text-sm text-gray-400">AI Anomaly Detection</div>
-                <div className={`inline-block mt-2 px-4 py-2 rounded-full font-semibold ${
-                  result.ai.anomaly ? "bg-red-600 text-white" : "bg-green-600 text-white"
-                }`}>
-                  {result.ai.anomaly ? "⚠ Anomalous Address" : "✓ Normal Behavior"}
-                </div>
-                <div className="text-xs text-gray-500 mt-2">
-                  Model Score: {result.ai.score}
-                </div>
-              </div>
-            )}
+           {/* AI SCORING */}
+{result.ai && result.ai.enabled && (
+  <div className="mt-8 bg-gray-900 rounded-xl p-6">
+    <div className="text-center mb-4">
+      <span className="text-xs text-gray-500 uppercase tracking-widest">
+        Decentralized AI Scoring
+      </span>
+    </div>
+    <div className="flex justify-around items-center">
+      <div className="text-center">
+        <div className="text-xs text-gray-500 mb-1">Algorithm Score</div>
+        <div className="text-2xl font-bold text-gray-400">
+          {result.ai.algorithm_score}
+        </div>
+      </div>
+      <div className="text-gray-600 text-2xl">→</div>
+      <div className="text-center">
+        <div className="text-xs text-gray-500 mb-1">AI Score</div>
+        <div className="text-3xl font-bold text-orange-400">
+          {result.ai.ai_score}
+        </div>
+      </div>
+    </div>
+    <div className="text-center mt-4 text-xs text-gray-600">
+      GradientBoosting Regressor · 296 Bitcoin addresses · 14 features · R² 0.87
+    </div>
+  </div>
+)}
 
             {/* UTXO WARNING */}
             {!result.metadata?.utxo_data_available && (
