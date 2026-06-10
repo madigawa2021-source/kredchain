@@ -273,7 +273,7 @@ export default function Home() {
       </div>
     </div>
     <div className="text-center mt-4 text-xs text-gray-600">
-      GradientBoosting Regressor · {result.metadata.training_samples} Bitcoin addresses · 14 features · R² 0.87
+      GradientBoosting Regressor · {result.metadata.training_samples} Bitcoin addresses · 14 features · R² 0.93
     </div>
   </div>
 )}
