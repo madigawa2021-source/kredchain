@@ -251,29 +251,22 @@ export default function Home() {
 
            {/* AI SCORING */}
 {result.ai && result.ai.enabled && (
-  <div className="mt-8 bg-gray-900 rounded-xl p-6">
-    <div className="text-center mb-4">
-      <span className="text-xs text-gray-500 uppercase tracking-widest">
-        Decentralized AI Scoring
-      </span>
-    </div>
-    <div className="flex justify-around items-center">
-      <div className="text-center">
-        <div className="text-xs text-gray-500 mb-1">Algorithm Score</div>
-        <div className="text-2xl font-bold text-gray-400">
-          {result.ai.algorithm_score}
+  <div className="mt-8 bg-gray-900 rounded-xl p-5">
+    <div className="flex items-center justify-between">
+      <div>
+        <div className="text-xs text-gray-500 uppercase tracking-widest mb-1">
+          Decentralized AI Score
+        </div>
+        <div className="text-xs text-gray-600">
+          GradientBoosting Regressor · {result.metadata.training_samples || 309} addresses · 14 features · R² 0.93
         </div>
       </div>
-      <div className="text-gray-600 text-2xl">→</div>
-      <div className="text-center">
-        <div className="text-xs text-gray-500 mb-1">AI Score</div>
-        <div className="text-3xl font-bold text-orange-400">
+      <div className="text-right">
+        <div className={`text-4xl font-bold ${tierColor.split(' ').find(c => c.startsWith('text-')) || 'text-orange-400'}`}>
           {result.ai.ai_score}
         </div>
+        <div className="text-xs text-gray-500 mt-1">out of 100</div>
       </div>
-    </div>
-    <div className="text-center mt-4 text-xs text-gray-600">
-      {`GradientBoosting Regressor · ${result.metadata.training_samples || 306} Bitcoin addresses · 14 features · R² 0.93`}
     </div>
   </div>
 )}
