@@ -288,9 +288,9 @@ export default function Home() {
                   return (
                     <div key={key} className="bg-gray-900 p-4 rounded-lg">
                       <div className="flex justify-between text-sm mb-1">
-                        <span className="font-medium">{feature.feature_name}</span>
-                        <span className="text-orange-400 font-semibold">+{feature.contribution}</span>
-                      </div>
+  <span className="font-medium">{feature.feature_name}</span>
+  <span className="text-gray-400 text-xs">{Math.round(feature.normalized * 100)}% signal</span>
+</div>
                       {desc && (
                         <p className="text-xs text-gray-500 mb-2">{desc}</p>
                       )}
