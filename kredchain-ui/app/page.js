@@ -287,7 +287,7 @@ export default function Home() {
                   const desc = descriptions[feature.feature_name] || "";
                   return (
                     <div key={key} className="bg-gray-900 p-4 rounded-lg">
-                      <div className="flex justify-between text-sm mb-1">
+                      javascript<div className="flex justify-between text-sm mb-1">
   <span className="font-medium">{feature.feature_name}</span>
   <span className="text-gray-400 text-xs">{Math.round(feature.normalized * 100)}% signal</span>
 </div>
