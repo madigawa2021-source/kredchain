@@ -252,7 +252,7 @@ export default function Home() {
            {/* AI SCORING */}
 {result.ai && result.ai.enabled && (
   <div className="mt-8 bg-gray-900 rounded-xl p-5">
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between mb-4">
       <div>
         <div className="text-xs text-gray-500 uppercase tracking-widest mb-1">
           Decentralized AI Score
@@ -267,6 +267,76 @@ export default function Home() {
         </div>
         <div className="text-xs text-gray-500 mt-1">out of 100</div>
       </div>
+    </div>
+
+    {/* AI NARRATIVE */}
+    <div className="border-t border-gray-800 pt-4 mt-2">
+      <div className="text-xs text-gray-500 uppercase tracking-widest mb-2">AI Reasoning</div>
+      <p className="text-sm text-gray-300 leading-relaxed">
+        {(() => {
+          const f = result.features;
+          const reasons = [];
+
+          const f1 = f["F1"]?.normalized || 0;
+          const f2 = f["F2"]?.normalized || 0;
+          const f3 = f["F3"]?.normalized || 0;
+          const f4 = f["F4"]?.normalized || 0;
+          const f5 = f["F5"]?.normalized || 0;
+          const f6 = f["F6"]?.normalized || 0;
+          const f8 = f["F8"]?.normalized || 0;
+          const f9 = f["F9"]?.normalized || 0;
+          const f11 = f["F11"]?.normalized || 0;
+          const f12 = f["F12"]?.normalized || 0;
+
+          if (f1 > 0.7 && f2 > 0.7)
+            reasons.push("long-established wallet with aged holdings");
+          else if (f1 === 0 && f2 === 0)
+            reasons.push("limited account age data available");
+
+          if (f3 > 0.8)
+            reasons.push("consistent activity across multiple months");
+
+          if (f4 > 0.7)
+            reasons.push("stable weekly transaction frequency");
+          else if (f4 < 0.3)
+            reasons.push("irregular transaction patterns");
+
+          if (f5 > 0.7)
+            reasons.push("predictable monthly volume");
+          else if (f5 < 0.2)
+            reasons.push("high volume variability");
+
+          if (f6 > 0.7)
+            reasons.push("mature unspent output holdings");
+
+          if (f8 > 0.7)
+            reasons.push("high counterparty diversity indicating active commerce");
+          else if (f8 < 0.3)
+            reasons.push("low counterparty diversity");
+
+          if (f9 > 0)
+            reasons.push("active spendable outputs confirmed");
+
+          if (f11 > 0.7)
+            reasons.push("strong incoming payment ratio consistent with merchant activity");
+
+          if (f12 > 0.8)
+            reasons.push("recently active address");
+          else if (f12 < 0.3)
+            reasons.push("address shows signs of inactivity");
+
+          if (reasons.length === 0)
+            return "Insufficient signal strength to generate a detailed narrative.";
+
+          const score = result.ai.ai_score;
+          let opening = "";
+          if (score >= 58) opening = "This address demonstrates strong trust indicators: ";
+          else if (score >= 42) opening = "This address shows moderate trust signals: ";
+          else opening = "This address has limited trust signals: ";
+
+          return opening + reasons.join(", ") + ".";
+        })()}
+      </p>
     </div>
   </div>
 )}
