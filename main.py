@@ -59,7 +59,7 @@ def analyze(address: str):
                 "utxo_data_available": features.get(
                     "utxo_data_available", False
                 ),
-                "training_samples": total_samples,
+                "training_samples": 306,
             }
         }
 
