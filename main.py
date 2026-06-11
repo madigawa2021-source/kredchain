@@ -21,15 +21,23 @@ app.add_middleware(
 
 TRAINING_FILE = "training_data.csv"
 MODEL_FILE = "kredchain_model.pkl"
-RETRAIN_EVERY = 10  # retrain every 10 new addresses
+RETRAIN_EVERY = 50  # retrain every 10 new addresses
 
 new_samples_count = 0
 
 
 def append_to_training(features, algorithm_score):
     """Add new address to training data."""
+
+    if os.path.exists(TRAINING_FILE):
+        df_existing = pd.read_csv(TRAINING_FILE)
+        if address in df_existing["address"].values:
+            return len(df_existing)  # skip duplicate
+    else:
+        df_existing = pd.DataFrame()
+
     row = {
-        "address": "live",
+        "address": address,
         "F1":  features["F1 account_age_days"],
         "F2":  features["F2 oldest_utxo_age_days"],
         "F3":  features["F3 active_months_ratio"],
@@ -48,16 +56,7 @@ def append_to_training(features, algorithm_score):
     }
 
     df_new = pd.DataFrame([row])
-
-    if os.path.exists(TRAINING_FILE):
-        df_existing = pd.read_csv(TRAINING_FILE)
-        df_combined = pd.concat(
-            [df_existing, df_new],
-            ignore_index=True
-        )
-    else:
-        df_combined = df_new
-
+    df_combined = pd.concat([df_existing, df_new], ignore_index=True)
     df_combined.to_csv(TRAINING_FILE, index=False)
     return len(df_combined)
 
@@ -140,6 +139,7 @@ def analyze(address: str):
         total_samples = append_to_training(
             features,
             algorithm_score
+            address
         )
 
         new_samples_count += 1
