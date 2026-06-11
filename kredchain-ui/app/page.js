@@ -301,8 +301,8 @@ export default function Home() {
                         />
                       </div>
                       <div className="flex justify-between text-xs text-gray-600 mt-1">
-                        <span>Raw: {feature.raw}</span>
-                        <span>{Math.round(percent)}%</span>
+                        <span>Raw: {typeof feature.raw === 'number' ? feature.raw.toLocaleString() : feature.raw}</span>
+                        <span>{Math.round(percent)}% strength</span>
                       </div>
                     </div>
                   );
